@@ -7,24 +7,112 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD51375A1FFE989400278AAF /* Clickable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137581FFE989400278AAF /* Clickable.cpp */; };
+		BD5137601FFE99AA00278AAF /* FontLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD51375E1FFE99AA00278AAF /* FontLoader.cpp */; };
+		BD5137641FFE9A4200278AAF /* GLRaycaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137621FFE9A4200278AAF /* GLRaycaster.cpp */; };
+		BD51376A1FFE9BEE00278AAF /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137681FFE9BEE00278AAF /* Game.cpp */; };
+		BD5137721FFE9CD200278AAF /* LevelEditorGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137701FFE9CD200278AAF /* LevelEditorGui.cpp */; };
+		BD5137751FFE9D3D00278AAF /* LevelEditorState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137731FFE9D3D00278AAF /* LevelEditorState.cpp */; };
+		BD5137781FFE9DD000278AAF /* LevelReaderWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137761FFE9DD000278AAF /* LevelReaderWriter.cpp */; };
+		BD51377B1FFE9E5200278AAF /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137791FFE9E5200278AAF /* MainMenuState.cpp */; };
+		BD51377E1FFE9EAE00278AAF /* PlayState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD51377C1FFE9EAE00278AAF /* PlayState.cpp */; };
+		BD5137841FFE9FC600278AAF /* PlayerInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137821FFE9FC600278AAF /* PlayerInputManager.cpp */; };
+		BD5137871FFEA01B00278AAF /* RandomGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137851FFEA01B00278AAF /* RandomGenerator.cpp */; };
+		BD51378B1FFEA0B900278AAF /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD5137891FFEA0B900278AAF /* Utils.cpp */; };
+		BD5137EB1FFECE5500278AAF /* greenlight.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137CF1FFECE5400278AAF /* greenlight.png */; };
+		BD5137EC1FFECE5500278AAF /* custom6.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D01FFECE5400278AAF /* custom6.txt */; };
+		BD5137ED1FFECE5500278AAF /* diagonal.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D11FFECE5400278AAF /* diagonal.png */; };
+		BD5137EE1FFECE5500278AAF /* metalblocks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D21FFECE5400278AAF /* metalblocks.png */; };
+		BD5137EF1FFECE5500278AAF /* custom4.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D31FFECE5500278AAF /* custom4.txt */; };
+		BD5137F01FFECE5500278AAF /* metalwall.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D41FFECE5500278AAF /* metalwall.png */; };
+		BD5137F11FFECE5500278AAF /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D51FFECE5500278AAF /* level1.txt */; };
+		BD5137F21FFECE5500278AAF /* custom3.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D61FFECE5500278AAF /* custom3.txt */; };
+		BD5137F31FFECE5500278AAF /* stoneblocks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D71FFECE5500278AAF /* stoneblocks.png */; };
+		BD5137F41FFECE5500278AAF /* OtherF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D81FFECE5500278AAF /* OtherF.ttf */; };
+		BD5137F51FFECE5500278AAF /* stonebricks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137D91FFECE5500278AAF /* stonebricks.png */; };
+		BD5137F61FFECE5500278AAF /* concbricks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DA1FFECE5500278AAF /* concbricks.png */; };
+		BD5137F71FFECE5500278AAF /* miretz3.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DB1FFECE5500278AAF /* miretz3.txt */; };
+		BD5137F81FFECE5500278AAF /* custom5.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DC1FFECE5500278AAF /* custom5.txt */; };
+		BD5137F91FFECE5500278AAF /* custom7.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DD1FFECE5500278AAF /* custom7.txt */; };
+		BD5137FA1FFECE5500278AAF /* concblocks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DE1FFECE5500278AAF /* concblocks.png */; };
+		BD5137FB1FFECE5500278AAF /* gun.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137DF1FFECE5500278AAF /* gun.png */; };
+		BD5137FC1FFECE5500278AAF /* custom2.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E01FFECE5500278AAF /* custom2.txt */; };
+		BD5137FD1FFECE5500278AAF /* barrel.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E11FFECE5500278AAF /* barrel.png */; };
+		BD5137FE1FFECE5500278AAF /* pillar.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E21FFECE5500278AAF /* pillar.png */; };
+		BD5137FF1FFECE5500278AAF /* gun_fire.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E31FFECE5500278AAF /* gun_fire.png */; };
+		BD5138001FFECE5500278AAF /* concbase.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E41FFECE5500278AAF /* concbase.png */; };
+		BD5138011FFECE5500278AAF /* level1_sprites.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E51FFECE5500278AAF /* level1_sprites.txt */; };
+		BD5138021FFECE5500278AAF /* custom1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E61FFECE5500278AAF /* custom1.txt */; };
+		BD5138031FFECE5500278AAF /* redbricks.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E71FFECE5500278AAF /* redbricks.png */; };
+		BD5138041FFECE5500278AAF /* redbricks2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E81FFECE5500278AAF /* redbricks2.png */; };
+		BD5138051FFECE5500278AAF /* barrelland.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137E91FFECE5500278AAF /* barrelland.txt */; };
+		BD5138061FFECE5500278AAF /* miretz2.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD5137EA1FFECE5500278AAF /* miretz2.txt */; };
 		BDBB4E551FFE919800D0431A /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = BDBB4E541FFE919800D0431A /* ResourcePath.mm */; };
 		BDBB4E581FFE919800D0431A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDBB4E571FFE919800D0431A /* main.cpp */; };
-		BDBB4E5B1FFE919800D0431A /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BDBB4E5A1FFE919800D0431A /* cute_image.jpg */; };
-		BDBB4E5D1FFE919800D0431A /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = BDBB4E5C1FFE919800D0431A /* nice_music.ogg */; };
-		BDBB4E5F1FFE919800D0431A /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDBB4E5E1FFE919800D0431A /* sansation.ttf */; };
-		BDBB4E611FFE919800D0431A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BDBB4E601FFE919800D0431A /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD5137581FFE989400278AAF /* Clickable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Clickable.cpp; sourceTree = "<group>"; };
+		BD5137591FFE989400278AAF /* Clickable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Clickable.hpp; sourceTree = "<group>"; };
+		BD51375C1FFE993D00278AAF /* Config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Config.hpp; sourceTree = "<group>"; };
+		BD51375E1FFE99AA00278AAF /* FontLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FontLoader.cpp; sourceTree = "<group>"; };
+		BD51375F1FFE99AA00278AAF /* FontLoader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FontLoader.hpp; sourceTree = "<group>"; };
+		BD5137621FFE9A4200278AAF /* GLRaycaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLRaycaster.cpp; sourceTree = "<group>"; };
+		BD5137631FFE9A4200278AAF /* GLRaycaster.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLRaycaster.hpp; sourceTree = "<group>"; };
+		BD5137681FFE9BEE00278AAF /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		BD5137691FFE9BEE00278AAF /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		BD51376D1FFE9C8500278AAF /* GameState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameState.hpp; sourceTree = "<group>"; };
+		BD5137701FFE9CD200278AAF /* LevelEditorGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorGui.cpp; sourceTree = "<group>"; };
+		BD5137711FFE9CD200278AAF /* LevelEditorGui.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorGui.hpp; sourceTree = "<group>"; };
+		BD5137731FFE9D3D00278AAF /* LevelEditorState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorState.cpp; sourceTree = "<group>"; };
+		BD5137741FFE9D3D00278AAF /* LevelEditorState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorState.hpp; sourceTree = "<group>"; };
+		BD5137761FFE9DD000278AAF /* LevelReaderWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelReaderWriter.cpp; sourceTree = "<group>"; };
+		BD5137771FFE9DD000278AAF /* LevelReaderWriter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelReaderWriter.hpp; sourceTree = "<group>"; };
+		BD5137791FFE9E5200278AAF /* MainMenuState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
+		BD51377A1FFE9E5200278AAF /* MainMenuState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
+		BD51377C1FFE9EAE00278AAF /* PlayState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayState.cpp; sourceTree = "<group>"; };
+		BD51377D1FFE9EAE00278AAF /* PlayState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayState.hpp; sourceTree = "<group>"; };
+		BD5137801FFE9F2900278AAF /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		BD5137821FFE9FC600278AAF /* PlayerInputManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerInputManager.cpp; sourceTree = "<group>"; };
+		BD5137831FFE9FC600278AAF /* PlayerInputManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerInputManager.hpp; sourceTree = "<group>"; };
+		BD5137851FFEA01B00278AAF /* RandomGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RandomGenerator.cpp; sourceTree = "<group>"; };
+		BD5137861FFEA01B00278AAF /* RandomGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RandomGenerator.hpp; sourceTree = "<group>"; };
+		BD5137891FFEA0B900278AAF /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		BD51378A1FFEA0B900278AAF /* Utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
+		BD51378D1FFEC33400278AAF /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		BD5137CF1FFECE5400278AAF /* greenlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenlight.png; sourceTree = "<group>"; };
+		BD5137D01FFECE5400278AAF /* custom6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom6.txt; sourceTree = "<group>"; };
+		BD5137D11FFECE5400278AAF /* diagonal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diagonal.png; sourceTree = "<group>"; };
+		BD5137D21FFECE5400278AAF /* metalblocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metalblocks.png; sourceTree = "<group>"; };
+		BD5137D31FFECE5500278AAF /* custom4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom4.txt; sourceTree = "<group>"; };
+		BD5137D41FFECE5500278AAF /* metalwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metalwall.png; sourceTree = "<group>"; };
+		BD5137D51FFECE5500278AAF /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
+		BD5137D61FFECE5500278AAF /* custom3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom3.txt; sourceTree = "<group>"; };
+		BD5137D71FFECE5500278AAF /* stoneblocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stoneblocks.png; sourceTree = "<group>"; };
+		BD5137D81FFECE5500278AAF /* OtherF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OtherF.ttf; sourceTree = "<group>"; };
+		BD5137D91FFECE5500278AAF /* stonebricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stonebricks.png; sourceTree = "<group>"; };
+		BD5137DA1FFECE5500278AAF /* concbricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concbricks.png; sourceTree = "<group>"; };
+		BD5137DB1FFECE5500278AAF /* miretz3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = miretz3.txt; sourceTree = "<group>"; };
+		BD5137DC1FFECE5500278AAF /* custom5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom5.txt; sourceTree = "<group>"; };
+		BD5137DD1FFECE5500278AAF /* custom7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom7.txt; sourceTree = "<group>"; };
+		BD5137DE1FFECE5500278AAF /* concblocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concblocks.png; sourceTree = "<group>"; };
+		BD5137DF1FFECE5500278AAF /* gun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gun.png; sourceTree = "<group>"; };
+		BD5137E01FFECE5500278AAF /* custom2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom2.txt; sourceTree = "<group>"; };
+		BD5137E11FFECE5500278AAF /* barrel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barrel.png; sourceTree = "<group>"; };
+		BD5137E21FFECE5500278AAF /* pillar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pillar.png; sourceTree = "<group>"; };
+		BD5137E31FFECE5500278AAF /* gun_fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gun_fire.png; sourceTree = "<group>"; };
+		BD5137E41FFECE5500278AAF /* concbase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concbase.png; sourceTree = "<group>"; };
+		BD5137E51FFECE5500278AAF /* level1_sprites.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1_sprites.txt; sourceTree = "<group>"; };
+		BD5137E61FFECE5500278AAF /* custom1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = custom1.txt; sourceTree = "<group>"; };
+		BD5137E71FFECE5500278AAF /* redbricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbricks.png; sourceTree = "<group>"; };
+		BD5137E81FFECE5500278AAF /* redbricks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbricks2.png; sourceTree = "<group>"; };
+		BD5137E91FFECE5500278AAF /* barrelland.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrelland.txt; sourceTree = "<group>"; };
+		BD5137EA1FFECE5500278AAF /* miretz2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = miretz2.txt; sourceTree = "<group>"; };
 		BDBB4E4F1FFE919800D0431A /* CasualGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CasualGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBB4E531FFE919800D0431A /* CasualGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CasualGame-Info.plist"; sourceTree = "<group>"; };
 		BDBB4E541FFE919800D0431A /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		BDBB4E561FFE919800D0431A /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		BDBB4E571FFE919800D0431A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		BDBB4E5A1FFE919800D0431A /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		BDBB4E5C1FFE919800D0431A /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
-		BDBB4E5E1FFE919800D0431A /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		BDBB4E601FFE919800D0431A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +126,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD5137571FFE986600278AAF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD5137581FFE989400278AAF /* Clickable.cpp */,
+				BD5137591FFE989400278AAF /* Clickable.hpp */,
+				BD51375E1FFE99AA00278AAF /* FontLoader.cpp */,
+				BD51375F1FFE99AA00278AAF /* FontLoader.hpp */,
+				BD5137761FFE9DD000278AAF /* LevelReaderWriter.cpp */,
+				BD5137771FFE9DD000278AAF /* LevelReaderWriter.hpp */,
+				BD5137851FFEA01B00278AAF /* RandomGenerator.cpp */,
+				BD5137861FFEA01B00278AAF /* RandomGenerator.hpp */,
+				BD5137891FFEA0B900278AAF /* Utils.cpp */,
+				BD51378A1FFEA0B900278AAF /* Utils.hpp */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		BD5137611FFE9A2800278AAF /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				BD5137621FFE9A4200278AAF /* GLRaycaster.cpp */,
+				BD5137631FFE9A4200278AAF /* GLRaycaster.hpp */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		BD51376B1FFE9C6F00278AAF /* GameStates */ = {
+			isa = PBXGroup;
+			children = (
+				BD51376D1FFE9C8500278AAF /* GameState.hpp */,
+				BD5137731FFE9D3D00278AAF /* LevelEditorState.cpp */,
+				BD5137741FFE9D3D00278AAF /* LevelEditorState.hpp */,
+				BD5137791FFE9E5200278AAF /* MainMenuState.cpp */,
+				BD51377A1FFE9E5200278AAF /* MainMenuState.hpp */,
+				BD51377C1FFE9EAE00278AAF /* PlayState.cpp */,
+				BD51377D1FFE9EAE00278AAF /* PlayState.hpp */,
+			);
+			name = GameStates;
+			sourceTree = "<group>";
+		};
+		BD51376F1FFE9CBC00278AAF /* Gui */ = {
+			isa = PBXGroup;
+			children = (
+				BD5137701FFE9CD200278AAF /* LevelEditorGui.cpp */,
+				BD5137711FFE9CD200278AAF /* LevelEditorGui.hpp */,
+			);
+			name = Gui;
+			sourceTree = "<group>";
+		};
+		BD51377F1FFE9F1700278AAF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				BD5137801FFE9F2900278AAF /* Player.hpp */,
+				BD51378D1FFEC33400278AAF /* Sprite.hpp */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		BD5137811FFE9FB000278AAF /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				BD5137821FFE9FC600278AAF /* PlayerInputManager.cpp */,
+				BD5137831FFE9FC600278AAF /* PlayerInputManager.hpp */,
+			);
+			name = Input;
+			sourceTree = "<group>";
+		};
 		BDBB4E451FFE919800D0431A = {
 			isa = PBXGroup;
 			children = (
@@ -57,11 +212,20 @@
 		BDBB4E511FFE919800D0431A /* CasualGame */ = {
 			isa = PBXGroup;
 			children = (
+				BD5137811FFE9FB000278AAF /* Input */,
+				BD51377F1FFE9F1700278AAF /* Entities */,
+				BD51376F1FFE9CBC00278AAF /* Gui */,
+				BD51376B1FFE9C6F00278AAF /* GameStates */,
+				BD5137611FFE9A2800278AAF /* Graphics */,
+				BD5137571FFE986600278AAF /* Utils */,
 				BDBB4E541FFE919800D0431A /* ResourcePath.mm */,
 				BDBB4E561FFE919800D0431A /* ResourcePath.hpp */,
 				BDBB4E571FFE919800D0431A /* main.cpp */,
 				BDBB4E591FFE919800D0431A /* Resources */,
 				BDBB4E521FFE919800D0431A /* Supporting Files */,
+				BD51375C1FFE993D00278AAF /* Config.hpp */,
+				BD5137681FFE9BEE00278AAF /* Game.cpp */,
+				BD5137691FFE9BEE00278AAF /* Game.hpp */,
 			);
 			path = CasualGame;
 			sourceTree = "<group>";
@@ -77,10 +241,34 @@
 		BDBB4E591FFE919800D0431A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BDBB4E5A1FFE919800D0431A /* cute_image.jpg */,
-				BDBB4E5C1FFE919800D0431A /* nice_music.ogg */,
-				BDBB4E5E1FFE919800D0431A /* sansation.ttf */,
-				BDBB4E601FFE919800D0431A /* icon.png */,
+				BD5137E11FFECE5500278AAF /* barrel.png */,
+				BD5137E91FFECE5500278AAF /* barrelland.txt */,
+				BD5137E41FFECE5500278AAF /* concbase.png */,
+				BD5137DE1FFECE5500278AAF /* concblocks.png */,
+				BD5137DA1FFECE5500278AAF /* concbricks.png */,
+				BD5137E61FFECE5500278AAF /* custom1.txt */,
+				BD5137E01FFECE5500278AAF /* custom2.txt */,
+				BD5137D61FFECE5500278AAF /* custom3.txt */,
+				BD5137D31FFECE5500278AAF /* custom4.txt */,
+				BD5137DC1FFECE5500278AAF /* custom5.txt */,
+				BD5137D01FFECE5400278AAF /* custom6.txt */,
+				BD5137DD1FFECE5500278AAF /* custom7.txt */,
+				BD5137D11FFECE5400278AAF /* diagonal.png */,
+				BD5137CF1FFECE5400278AAF /* greenlight.png */,
+				BD5137E31FFECE5500278AAF /* gun_fire.png */,
+				BD5137DF1FFECE5500278AAF /* gun.png */,
+				BD5137E51FFECE5500278AAF /* level1_sprites.txt */,
+				BD5137D51FFECE5500278AAF /* level1.txt */,
+				BD5137D21FFECE5400278AAF /* metalblocks.png */,
+				BD5137D41FFECE5500278AAF /* metalwall.png */,
+				BD5137EA1FFECE5500278AAF /* miretz2.txt */,
+				BD5137DB1FFECE5500278AAF /* miretz3.txt */,
+				BD5137D81FFECE5500278AAF /* OtherF.ttf */,
+				BD5137E21FFECE5500278AAF /* pillar.png */,
+				BD5137E71FFECE5500278AAF /* redbricks.png */,
+				BD5137E81FFECE5500278AAF /* redbricks2.png */,
+				BD5137D71FFECE5500278AAF /* stoneblocks.png */,
+				BD5137D91FFECE5500278AAF /* stonebricks.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -143,10 +331,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDBB4E611FFE919800D0431A /* icon.png in Resources */,
-				BDBB4E5F1FFE919800D0431A /* sansation.ttf in Resources */,
-				BDBB4E5D1FFE919800D0431A /* nice_music.ogg in Resources */,
-				BDBB4E5B1FFE919800D0431A /* cute_image.jpg in Resources */,
+				BD5137EC1FFECE5500278AAF /* custom6.txt in Resources */,
+				BD5137ED1FFECE5500278AAF /* diagonal.png in Resources */,
+				BD5137FA1FFECE5500278AAF /* concblocks.png in Resources */,
+				BD5138031FFECE5500278AAF /* redbricks.png in Resources */,
+				BD5137F11FFECE5500278AAF /* level1.txt in Resources */,
+				BD5137EB1FFECE5500278AAF /* greenlight.png in Resources */,
+				BD5138021FFECE5500278AAF /* custom1.txt in Resources */,
+				BD5137F01FFECE5500278AAF /* metalwall.png in Resources */,
+				BD5138041FFECE5500278AAF /* redbricks2.png in Resources */,
+				BD5137F91FFECE5500278AAF /* custom7.txt in Resources */,
+				BD5137FB1FFECE5500278AAF /* gun.png in Resources */,
+				BD5137FF1FFECE5500278AAF /* gun_fire.png in Resources */,
+				BD5138001FFECE5500278AAF /* concbase.png in Resources */,
+				BD5137FC1FFECE5500278AAF /* custom2.txt in Resources */,
+				BD5138061FFECE5500278AAF /* miretz2.txt in Resources */,
+				BD5137FE1FFECE5500278AAF /* pillar.png in Resources */,
+				BD5137F71FFECE5500278AAF /* miretz3.txt in Resources */,
+				BD5137EF1FFECE5500278AAF /* custom4.txt in Resources */,
+				BD5137F81FFECE5500278AAF /* custom5.txt in Resources */,
+				BD5137F61FFECE5500278AAF /* concbricks.png in Resources */,
+				BD5137F51FFECE5500278AAF /* stonebricks.png in Resources */,
+				BD5138011FFECE5500278AAF /* level1_sprites.txt in Resources */,
+				BD5137EE1FFECE5500278AAF /* metalblocks.png in Resources */,
+				BD5137F31FFECE5500278AAF /* stoneblocks.png in Resources */,
+				BD5137F41FFECE5500278AAF /* OtherF.ttf in Resources */,
+				BD5137FD1FFECE5500278AAF /* barrel.png in Resources */,
+				BD5137F21FFECE5500278AAF /* custom3.txt in Resources */,
+				BD5138051FFECE5500278AAF /* barrelland.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +386,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDBB4E581FFE919800D0431A /* main.cpp in Sources */,
+				BD51377B1FFE9E5200278AAF /* MainMenuState.cpp in Sources */,
+				BD5137601FFE99AA00278AAF /* FontLoader.cpp in Sources */,
+				BD5137721FFE9CD200278AAF /* LevelEditorGui.cpp in Sources */,
+				BD5137781FFE9DD000278AAF /* LevelReaderWriter.cpp in Sources */,
+				BD5137841FFE9FC600278AAF /* PlayerInputManager.cpp in Sources */,
+				BD51375A1FFE989400278AAF /* Clickable.cpp in Sources */,
+				BD5137871FFEA01B00278AAF /* RandomGenerator.cpp in Sources */,
+				BD51377E1FFE9EAE00278AAF /* PlayState.cpp in Sources */,
+				BD51378B1FFEA0B900278AAF /* Utils.cpp in Sources */,
 				BDBB4E551FFE919800D0431A /* ResourcePath.mm in Sources */,
+				BD5137751FFE9D3D00278AAF /* LevelEditorState.cpp in Sources */,
+				BD5137641FFE9A4200278AAF /* GLRaycaster.cpp in Sources */,
+				BD51376A1FFE9BEE00278AAF /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
