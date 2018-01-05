@@ -21,14 +21,13 @@ class GLRaycaster
 {
 public:
     GLRaycaster();
-    ~GLRaycaster();
+    virtual ~GLRaycaster();
     
     void initialize(const int windowWidth, const int windowHeight,
                     std::shared_ptr<Player> player,
                     std::shared_ptr<LevelReaderWriter> levelReader);
-    void calculateWalls();
-    void calculateSprites();
-    void setPixel(int x, int y, const sf::Uint32 colorRgba, int style);
+
+    void update();
     void draw(sf::RenderWindow& window);
     
     std::vector<Clickable>& getClickables() { return m_clickables; }
@@ -38,7 +37,16 @@ private:
     int m_windowWidth = 0;
     int m_windowHeight = 0;
     
+    sf::Texture m_screen;
+    sf::Sprite m_screenSprite;
+    
     std::shared_ptr<Player> m_player;
+    
+    double m_tempRayPosX = 0.0;
+    double m_tempRayPosY = 0.0;
+    double m_tempRayDirX = 0.0;
+    double m_tempRayDirY = 0.0;
+    
     std::shared_ptr<LevelReaderWriter> m_levelReader;
     size_t m_spriteSize;
     
@@ -50,10 +58,14 @@ private:
     
     //main rendering buffer
     int m_bufferSize;
-    sf::Uint8* m_buffer;
+    std::vector<sf::Uint8> m_buffer;
     
     // buffer of clickable items in the view
     std::vector<Clickable> m_clickables;
+    
+    void calculateWalls();
+    void calculateSprites();
+    void setPixel(int x, int y, const sf::Uint32 colorRgba, int style);
     
 };
 

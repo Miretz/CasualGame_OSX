@@ -102,6 +102,12 @@ m_windowHeight(h)
     
 }
 
+
+MainMenuState::~MainMenuState()
+{
+}
+
+
 void MainMenuState::update(const float ft)
 {
     
@@ -190,34 +196,37 @@ void MainMenuState::handleInput(const sf::Event & event, const sf::Vector2f mous
     if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
     {
         game.changeState(GameStateName::QUIT);
+        return;
     }
+    
     //left mouse or enter button
-    else if (((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Return)) ||
+    if (((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Return)) ||
              ((event.type == sf::Event::MouseButtonPressed) && (event.mouseButton.button == sf::Mouse::Left)))
     {
-        if (m_mouseOverIndex == 0)
+        switch (m_mouseOverIndex)
         {
-            game.changeState(GameStateName::PLAY);
-        }
-        if (m_mouseOverIndex == 1)
-        {
-            game.changeState(GameStateName::RESTART);
-        }
-        if (m_mouseOverIndex == 2)
-        {
-            game.changeState(GameStateName::LEVEL_EDITOR);
-        }
-        if (m_mouseOverIndex == 3)
-        {
-            game.changeState(GameStateName::SWITCH_FULLSCREEN);
-        }
-        if (m_mouseOverIndex == 4)
-        {
-            game.changeState(GameStateName::QUIT);
+            case 0:
+                game.changeState(GameStateName::PLAY);
+                return;
+            case 1:
+                game.changeState(GameStateName::RESTART);
+                return;
+            case 2:
+                game.changeState(GameStateName::LEVEL_EDITOR);
+                return;
+            case 3:
+                game.changeState(GameStateName::SWITCH_FULLSCREEN);
+                return;
+            case 4:
+                game.changeState(GameStateName::QUIT);
+                return;
+            default:
+                break;
         }
     }
+    
     //enable menu selection using arrow keys
-    else if ((event.type == sf::Event::KeyPressed) && ((event.key.code == sf::Keyboard::Down) || (event.key.code == sf::Keyboard::S)))
+    if ((event.type == sf::Event::KeyPressed) && ((event.key.code == sf::Keyboard::Down) || (event.key.code == sf::Keyboard::S)))
     {
         if (m_mouseOverIndex < m_menuItems.size() - 1)
             m_mouseOverIndex++;

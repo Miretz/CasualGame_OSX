@@ -20,7 +20,7 @@ class Game
 {
 public:
     Game();
-    virtual ~Game() = default;
+    virtual ~Game();
     
     void run();
     void changeState(GameStateName newState);
@@ -33,8 +33,8 @@ public:
     
 private:
     
-    float m_lastFt = 0.f;
-    float m_currentSlice = 0.f;
+    int m_lastFt = 0;
+    int m_currentSlice = 0;
     bool m_running = true;
     int m_fpsShowTimer = 0;
     bool m_fullscreen = false;
@@ -42,7 +42,8 @@ private:
     
     std::unique_ptr<sf::RenderWindow> m_window;
     std::unique_ptr<sf::Clock> m_clock;
-    std::unique_ptr<GameState> m_currentState;
+    
+    GameState* m_currentState;
     
     std::shared_ptr<LevelReaderWriter> m_levelReader;
     std::shared_ptr<Player> m_player;
@@ -50,7 +51,7 @@ private:
     void checkInput();
     void update();
     void draw() const;
-    void restart();
+    void resetLevel();
     void updateTimers();
     
 };

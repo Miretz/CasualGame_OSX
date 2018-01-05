@@ -17,8 +17,13 @@
 
 #include <cmath>
 
-GLRaycaster::GLRaycaster() {}
-GLRaycaster::~GLRaycaster() {}
+GLRaycaster::GLRaycaster()
+{
+}
+
+GLRaycaster::~GLRaycaster()
+{
+}
 
 void GLRaycaster::initialize(
                              const int windowWidth, const int windowHeight,
@@ -39,25 +44,28 @@ void GLRaycaster::initialize(
     m_clickables.resize(m_levelReader->getSprites().size());
     
     m_bufferSize = windowHeight * windowWidth * 4;
-    m_buffer = new sf::Uint8[m_bufferSize];
+    m_buffer.resize(m_bufferSize);
+    
+    m_screen.create(m_windowWidth, m_windowHeight);
     
 }
 
-void GLRaycaster::draw(sf::RenderWindow& window)
+void GLRaycaster::update()
 {
-    memset(m_buffer, 0, m_bufferSize*sizeof(*m_buffer));
+    std::vector<sf::Uint8>().swap(m_buffer);
+    m_buffer.resize(m_windowWidth * m_windowHeight * 3);
     
     //calculate a new buffer
     calculateWalls();
     calculateSprites();
     
-    sf::Texture texture;
-    texture.create(m_windowWidth, m_windowHeight);
-    sf::Sprite sprite(texture);
-    
-    texture.update(m_buffer);
-    window.draw(sprite);
-    
+    m_screen.update(&m_buffer[0]);
+    m_screenSprite.setTexture(m_screen);
+}
+
+void GLRaycaster::draw(sf::RenderWindow& window)
+{
+    window.draw(m_screenSprite);
 }
 
 
@@ -193,7 +201,7 @@ void GLRaycaster::calculateWalls()
             if (texNumY < texSize)
             {
                 auto color = texture[texNumY];
-                setPixel(x, y, color, side == 1);
+                setPixel(x, y, color, side);
             }
         }
         
@@ -243,8 +251,8 @@ void GLRaycaster::calculateWalls()
             sf::Uint32 color1 = tex8[g_textureWidth * floorTexY + floorTexX];
             sf::Uint32 color2 = tex9[g_textureWidth * floorTexY + floorTexX];
             
-            setPixel(x, y, color1, false);
-            setPixel(x, m_windowHeight - y, color2, false);
+            setPixel(x, y, color1, 0);
+            setPixel(x, m_windowHeight - y, color2, 0);
         }
     }
 }
@@ -364,34 +372,30 @@ void GLRaycaster::setPixel(int x, int y, const sf::Uint32 colorRgba, int style)
     auto colors = (sf::Uint8*)&colorRgba;
     auto index = (y * m_windowWidth + x) * 4;
     
-    /*
+    
     if (style == g_playDrawDarkened)
     {
         m_buffer[index] = colors[0] / 2;
         m_buffer[index + 1] = colors[1] / 2;
         m_buffer[index + 2] = colors[2] / 2;
-        m_buffer[index + 3] = 1;
+        m_buffer[index + 3] = colors[3] / 2;
     }
     else if (style == g_playhDrawHighlighted)
     {
         m_buffer[index] = std::min(colors[0] + 25, 255);
         m_buffer[index + 1] = std::min(colors[1] + 25, 255);
         m_buffer[index + 2] = std::min(colors[2] + 25, 255);
-        m_buffer[index + 3] = 1;
+        m_buffer[index + 3] = std::min(colors[3] + 25, 255);
+        
     }
     else
     {
         m_buffer[index] = colors[0];
         m_buffer[index + 1] = colors[1];
         m_buffer[index + 2] = colors[2];
-        m_buffer[index + 3] = 1;
-    }*/
-    
-    //ARGB
-    m_buffer[index + 1] = colors[1];
-    m_buffer[index + 2] = colors[2];
-    m_buffer[index + 3] = colors[3];
-    m_buffer[index] = colors[0];
+        m_buffer[index + 3] = colors[3];
+    }
+
     
 }
 

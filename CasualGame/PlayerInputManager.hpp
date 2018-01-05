@@ -18,7 +18,7 @@ class PlayerInputManager
 {
 public:
     PlayerInputManager();
-    ~PlayerInputManager();
+    virtual ~PlayerInputManager();
     
     void handleInput(const sf::Event& event, const sf::Vector2f mousePosition, Game& game);
     void updatePlayerMovement(const double fts, std::shared_ptr<Player> m_player, const std::vector<std::vector<int> >& m_levelRef);

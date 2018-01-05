@@ -26,9 +26,6 @@ m_player(move(player)),
 m_levelReader(move(levelReader))
 {
     
-    m_levelSize = m_levelReader->getLevel().size();
-    m_spriteSize = m_levelReader->getSprites().size();
-    
     m_inputManager = new PlayerInputManager();
     m_glRaycaster = new GLRaycaster();
     
@@ -71,6 +68,8 @@ m_levelReader(move(levelReader))
     m_crosshair.setPosition({ float(w / 2) - 1.0f, float(h / 2) - 1.0f });
     m_crosshair.setFillColor(sf::Color::White);
     
+    generateMinimap();
+    
 }
 
 PlayState::~PlayState(){
@@ -100,6 +99,13 @@ void PlayState::update(const float ft)
     //update player movement
     m_inputManager->updatePlayerMovement(fts, m_player, m_levelReader->getLevel());
     
+    //update player position on minimap
+    float angle = std::atan2f(float(m_player->m_dirX), float(m_player->m_dirY));
+    m_minimapPlayer.setPosition(float(m_player->m_posY) * g_playMinimapScale, float(m_player->m_posX) * g_playMinimapScale);
+    m_minimapPlayer.setRotation((angle * 57.2957795f) + 90);
+    
+    
+    
     //wobble gun
     if (m_inputManager->isMoving())
     {
@@ -121,6 +127,7 @@ void PlayState::update(const float ft)
 
 void PlayState::draw(sf::RenderWindow& window)
 {
+    m_glRaycaster->update();
     m_glRaycaster->draw(window);
     
     //draw minimap
@@ -132,65 +139,92 @@ void PlayState::draw(sf::RenderWindow& window)
     window.display();
 }
 
-
-
-//Render minimap
-void PlayState::drawMinimap(sf::RenderWindow* window) const
+//Pre-generate the minimap
+void PlayState::generateMinimap()
 {
+    // Minimap player arrow
+    // resize it to 5 points
+    m_minimapPlayer.setPointCount(7);
     
-    //minimap background
-    sf::RectangleShape minimapBg(sf::Vector2f(m_levelSize * g_playMinimapScale, m_levelSize * g_playMinimapScale));
-    minimapBg.setPosition(0, 0);
-    minimapBg.setFillColor(sf::Color(150, 150, 150, g_playMinimapTransparency));
-    window->draw(minimapBg);
+    // define the points
+    m_minimapPlayer.setPoint(0, sf::Vector2f(0, 0));
+    m_minimapPlayer.setPoint(1, sf::Vector2f(10, 10));
+    m_minimapPlayer.setPoint(2, sf::Vector2f(5, 10));
+    m_minimapPlayer.setPoint(3, sf::Vector2f(5, 15));
+    m_minimapPlayer.setPoint(4, sf::Vector2f(-5, 15));
+    m_minimapPlayer.setPoint(5, sf::Vector2f(-5, 10));
+    m_minimapPlayer.setPoint(6, sf::Vector2f(-10, 10));
     
-    //draw walls
-    for (size_t y = 0; y < m_levelSize; y++)
+    m_minimapPlayer.setFillColor(sf::Color(255, 255, 255, g_playMinimapTransparency));
+    
+    auto levelSize = m_levelReader->getLevel().size();
+    
+    //Minimap background
+    m_minimapBackground.setSize(sf::Vector2f(levelSize * g_playMinimapScale, levelSize * g_playMinimapScale));
+    m_minimapBackground.setPosition(0, 0);
+    m_minimapBackground.setFillColor(sf::Color(150, 150, 150, g_playMinimapTransparency));
+    
+    // Minimap walls
+    for (size_t y = 0; y < levelSize; y++)
     {
-        for (size_t x = 0; x < m_levelSize; x++)
+        for (size_t x = 0; x < levelSize; x++)
         {
             if (m_levelReader->getLevel()[y][x] > 0 && m_levelReader->getLevel()[y][x] < 9)
             {
                 sf::RectangleShape wall(sf::Vector2f(g_playMinimapScale, g_playMinimapScale));
                 wall.setPosition(x * g_playMinimapScale, y * g_playMinimapScale);
                 wall.setFillColor(sf::Color(0, 0, 0, g_playMinimapTransparency));
-                window->draw(wall);
+                m_minimapWallBuffer.push_back(wall);
             }
         }
     }
     
-    // Render entities on minimap
-    for (size_t i = 0; i < m_spriteSize; i++)
+    updateMinimapEntities();
+}
+
+void PlayState::updateMinimapEntities()
+{
+    // Clear
+    std::vector<sf::CircleShape>().swap(m_minimapEntityBuffer);
+    
+    // Entities on minimap
+    auto spriteSize = m_levelReader->getSprites().size();
+    for (size_t i = 0; i < spriteSize; i++)
     {
+        auto sprite = m_levelReader->getSprites()[i];
         sf::CircleShape object(g_playMinimapScale / 4.0f);
         object.setPosition(
-                           float(m_levelReader->getSprites()[i].y) * g_playMinimapScale,
-                           float(m_levelReader->getSprites()[i].x) * g_playMinimapScale);
+                           float(sprite.y) * g_playMinimapScale,
+                           float(sprite.x) * g_playMinimapScale);
         object.setOrigin(g_playMinimapScale / 2.0f, g_playMinimapScale / 2.0f);
         object.setFillColor(sf::Color(0, 0, 255, g_playMinimapTransparency));
-        window->draw(object);
+        m_minimapEntityBuffer.push_back(object);
+    }
+}
+
+//Render minimap
+void PlayState::drawMinimap(sf::RenderWindow* window) const
+{
+    
+    //minimap background
+    window->draw(m_minimapBackground);
+    
+    //draw walls
+    for(auto wall : m_minimapWallBuffer)
+    {
+        window->draw(wall);
+    }
+    
+    //draw entities
+    for(auto entity : m_minimapEntityBuffer)
+    {
+        window->draw(entity);
     }
     
     // Render Player on minimap
-    {
-        sf::CircleShape player(float(g_playMinimapScale), 3);
-        player.setPosition(float(m_player->m_posY) * g_playMinimapScale, float(m_player->m_posX) * g_playMinimapScale);
-        player.setFillColor(sf::Color(255, 255, 255, g_playMinimapTransparency));
-        player.setOrigin(float(g_playMinimapScale), float(g_playMinimapScale));
-        
-        sf::RectangleShape player2(sf::Vector2f(g_playMinimapScale / 2.0f, g_playMinimapScale / 2.0f));
-        player2.setPosition(float(m_player->m_posY) * g_playMinimapScale, float(m_player->m_posX) * g_playMinimapScale);
-        player2.setFillColor(sf::Color(255, 255, 255, g_playMinimapTransparency));
-        player2.setOrigin(g_playMinimapScale / 4.0f, -g_playMinimapScale / 2.0f);
-        
-        float angle = std::atan2f(float(m_player->m_dirX), float(m_player->m_dirY));
-        player.setRotation((angle * 57.2957795f) + 90);
-        player2.setRotation((angle * 57.2957795f) + 90);
-        
-        window->draw(player);
-        window->draw(player2);
-    }
+    window->draw(m_minimapPlayer);
 }
+    
 
 void PlayState::drawGui(sf::RenderWindow* window)
 {
@@ -238,6 +272,7 @@ void PlayState::handleInput(const sf::Event & event, const sf::Vector2f mousePos
     //send events to player controller
     m_inputManager->handleInput(event, mousePosition, game);
     
+    
     //im shooting
     if (m_inputManager->isShooting())
     {
@@ -261,6 +296,7 @@ void PlayState::destroyAimedAtSprite()
             {
                 m_levelReader->deleteSprite(clickables[i].getSpriteIndex());
                 clickables[i].setSpriteIndex(-1);
+                updateMinimapEntities();
             }
             return;
         }
