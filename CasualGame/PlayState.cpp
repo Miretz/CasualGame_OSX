@@ -12,9 +12,7 @@
 #include "Sprite.hpp"
 #include "Player.hpp"
 #include "LevelReaderWriter.hpp"
-#include "GLRaycaster.hpp"
 #include "Clickable.hpp"
-#include "PlayerInputManager.hpp"
 #include "Utils.hpp"
 #include "Config.hpp"
 #include "ResourcePath.hpp"
@@ -26,8 +24,8 @@ m_player(move(player)),
 m_levelReader(move(levelReader))
 {
     
-    m_inputManager = new PlayerInputManager();
-    m_glRaycaster = new GLRaycaster();
+    m_inputManager = std::unique_ptr<PlayerInputManager>(new PlayerInputManager());
+    m_glRaycaster = std::unique_ptr<GLRaycaster>(new GLRaycaster());
     
     m_glRaycaster->initialize(w, h, m_player, m_levelReader);
     
@@ -70,13 +68,6 @@ m_levelReader(move(levelReader))
     
     generateMinimap();
     
-}
-
-PlayState::~PlayState(){
-    delete m_inputManager;
-    m_inputManager = NULL;
-    delete m_glRaycaster;
-    m_glRaycaster = NULL;
 }
 
 void PlayState::update(const float ft)

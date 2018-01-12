@@ -37,7 +37,7 @@ m_levelReader(move(levelReader))
     m_customLevels = m_levelReader->getCustomLevels();
     
     //Gui
-    m_gui = new LevelEditorGui(w - g_editorMenuWidth + 1, 10, g_editorMenuWidth);
+    m_gui = std::unique_ptr<LevelEditorGui>(new LevelEditorGui(w - g_editorMenuWidth + 1, 10, g_editorMenuWidth));
     m_gui->addButton(g_editorTxtSwitchMode);
     m_gui->addButton(g_editorTxtLoadDefault);
     
@@ -61,12 +61,6 @@ m_levelReader(move(levelReader))
     m_gui->setTexturedButton(m_spriteButtonId, m_levelReader->getTextureSfml(m_selectedSprite - 1));
     
     m_gui->get(m_spriteButtonId).background.setSize({ 100,100 });
-}
-
-LevelEditorState::~LevelEditorState()
-{
-    delete m_gui;
-    m_gui = NULL;
 }
 
 void LevelEditorState::update(const float ft)

@@ -16,7 +16,6 @@
 
 
 PlayerInputManager::PlayerInputManager() {}
-PlayerInputManager::~PlayerInputManager() {}
 
 void PlayerInputManager::handleInput(const sf::Event & event, const sf::Vector2f mousePosition, Game& game)
 {

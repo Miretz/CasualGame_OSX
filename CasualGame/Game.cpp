@@ -20,7 +20,7 @@ Game::Game()
 {
     m_window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(g_defaultWidth, g_defaultHeight), g_gameTitle, sf::Style::Close));
     
-    m_currentState = new MainMenuState(g_defaultWidth, g_defaultHeight);
+    m_currentState = std::unique_ptr<GameState>(new MainMenuState(g_defaultWidth, g_defaultHeight));
     
     m_clock = std::unique_ptr<sf::Clock>(new sf::Clock());
     
@@ -30,10 +30,6 @@ Game::Game()
     
     m_levelReader = std::make_shared<LevelReaderWriter>();
     m_player = std::make_shared<Player>();
-}
-
-Game::~Game()
-{
 }
 
 void Game::run()
@@ -102,37 +98,38 @@ void Game::updateTimers()
 
 void Game::changeState(GameStateName newState)
 {
-    delete m_currentState;
-    m_currentState = NULL;
+    
+    const auto sizeX = m_window->getSize().x;
+    const auto sizeY = m_window->getSize().y;
     
     switch (newState)
     {
         case GameStateName::MAINMENU:
             m_window->setMouseCursorVisible(true);
-            m_currentState = new MainMenuState(m_window->getSize().x, m_window->getSize().y);
+            m_currentState.reset(new MainMenuState(sizeX, sizeY));
             break;
         case GameStateName::PLAY:
             m_window->setMouseCursorVisible(false);
-            m_currentState = new PlayState(m_window->getSize().x, m_window->getSize().y, m_player, m_levelReader);
+            m_currentState.reset(new PlayState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::RESTART:
             m_window->setMouseCursorVisible(false);
             resetLevel();
-            m_currentState = new PlayState(m_window->getSize().x, m_window->getSize().y, m_player, m_levelReader);
+            m_currentState.reset(new PlayState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::LEVEL_EDITOR:
             m_window->setMouseCursorVisible(true);
-            m_currentState = new LevelEditorState(m_window->getSize().x, m_window->getSize().y, m_player, m_levelReader);
+            m_currentState.reset(new LevelEditorState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::SWITCH_FULLSCREEN:
             switchFullscreen();
-            m_currentState = new MainMenuState(m_window->getSize().x, m_window->getSize().y);
+            m_currentState.reset(new MainMenuState(m_window->getSize().x, m_window->getSize().y));
             break;
         case GameStateName::QUIT:
             m_running = false;
             break;
         default:
-            m_currentState = new MainMenuState(m_window->getSize().x, m_window->getSize().y);
+            m_currentState.reset(new MainMenuState(sizeX, sizeY));
             break;
     }
 }

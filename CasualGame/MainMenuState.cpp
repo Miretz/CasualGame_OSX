@@ -102,12 +102,6 @@ m_windowHeight(h)
     
 }
 
-
-MainMenuState::~MainMenuState()
-{
-}
-
-
 void MainMenuState::update(const float ft)
 {
     

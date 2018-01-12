@@ -20,7 +20,7 @@ class Game
 {
 public:
     Game();
-    virtual ~Game();
+    virtual ~Game() = default;
     
     void run();
     void changeState(GameStateName newState);
@@ -43,7 +43,7 @@ private:
     std::unique_ptr<sf::RenderWindow> m_window;
     std::unique_ptr<sf::Clock> m_clock;
     
-    GameState* m_currentState;
+    std::unique_ptr<GameState> m_currentState;
     
     std::shared_ptr<LevelReaderWriter> m_levelReader;
     std::shared_ptr<Player> m_player;

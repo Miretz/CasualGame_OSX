@@ -11,17 +11,17 @@
 #include <memory>
 
 #include "GameState.hpp"
+#include "GLRaycaster.hpp"
+#include "PlayerInputManager.hpp"
 
 class Player;
-class PlayerInputManager;
-class GLRaycaster;
 class LevelReaderWriter;
 
 class PlayState : public GameState
 {
 public:
     PlayState(const int w, const int h, std::shared_ptr<Player> player, std::shared_ptr<LevelReaderWriter> levelReader);
-    virtual ~PlayState();
+    virtual ~PlayState() = default;
     
     void update(const float ft) override;
     void draw(sf::RenderWindow& window) override;
@@ -32,8 +32,8 @@ private:
     std::shared_ptr<Player> m_player;
     std::shared_ptr<LevelReaderWriter> m_levelReader;
     
-    PlayerInputManager* m_inputManager;
-    GLRaycaster* m_glRaycaster;
+    std::unique_ptr<PlayerInputManager> m_inputManager;
+    std::unique_ptr<GLRaycaster> m_glRaycaster;
     
     double m_runningTime = 0.0;
     

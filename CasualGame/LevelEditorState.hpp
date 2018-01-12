@@ -21,7 +21,7 @@ class LevelEditorState : public GameState
 {
 public:
     LevelEditorState(const int w, const int h, std::shared_ptr<Player> player, std::shared_ptr<LevelReaderWriter> levelReader);
-    virtual ~LevelEditorState();
+    virtual ~LevelEditorState() = default;
     
     void update(const float ft) override;
     void draw(sf::RenderWindow& window) override;
@@ -50,7 +50,7 @@ private:
     std::string m_customLevelName = "<enter filename>";
     std::vector<std::string> m_customLevels;
     
-    LevelEditorGui* m_gui;
+    std::unique_ptr<LevelEditorGui> m_gui;
     
     void toggleMode();
     void resetPlayer() const;
