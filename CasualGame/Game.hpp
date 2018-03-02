@@ -13,7 +13,7 @@
 
 #include "GameState.hpp"
 
-class Player;
+struct Player;
 class LevelReaderWriter;
 
 class Game
@@ -29,7 +29,7 @@ public:
     
     int getFps() const { return m_fps; }
     
-    sf::RenderWindow& getWindow() const { return *m_window; }
+    const sf::RenderWindow& getWindow() const { return m_window; }
     
 private:
     
@@ -40,7 +40,7 @@ private:
     bool m_fullscreen = false;
     int m_fps = 0;
     
-    std::unique_ptr<sf::RenderWindow> m_window;
+    sf::RenderWindow m_window;
     std::unique_ptr<sf::Clock> m_clock;
     
     std::unique_ptr<GameState> m_currentState;
@@ -50,7 +50,7 @@ private:
     
     void checkInput();
     void update();
-    void draw() const;
+    void draw();
     void resetLevel();
     void updateTimers();
     

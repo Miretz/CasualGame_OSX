@@ -16,17 +16,15 @@
 #include "LevelReaderWriter.hpp"
 #include "Config.hpp"
 
-Game::Game()
+Game::Game():
+m_window(sf::VideoMode(g_defaultWidth, g_defaultHeight), g_gameTitle, sf::Style::Close)
 {
-    m_window = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(sf::VideoMode(g_defaultWidth, g_defaultHeight), g_gameTitle, sf::Style::Close));
-    
+
     m_currentState = std::unique_ptr<GameState>(new MainMenuState(g_defaultWidth, g_defaultHeight));
     
     m_clock = std::unique_ptr<sf::Clock>(new sf::Clock());
     
-    sf::RenderWindow(sf::VideoMode(g_defaultWidth, g_defaultHeight), g_gameTitle);
-    
-    m_window->setFramerateLimit(500);
+    m_window.setFramerateLimit(500);
     
     m_levelReader = std::make_shared<LevelReaderWriter>();
     m_player = std::make_shared<Player>();
@@ -42,16 +40,15 @@ void Game::run()
         updateTimers();
         checkInput();
     }
-    m_window->close();
+    m_window.close();
 }
 
 void Game::checkInput()
 {
+    auto mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(m_window));
+    
     sf::Event event;
-    
-    auto mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*m_window));
-    
-    while (m_window->pollEvent(event))
+    while (m_window.pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
         {
@@ -59,9 +56,7 @@ void Game::checkInput()
         }
         else
         {
-            if(m_currentState != NULL){
-                m_currentState->handleInput(event, mousePosition, *this);
-            }
+            m_currentState->handleInput(event, mousePosition, *this);
         }
     }
 }
@@ -75,9 +70,9 @@ void Game::update()
     }
 }
 
-void Game::draw() const
+void Game::draw()
 {
-    m_currentState->draw(*m_window);
+    m_currentState->draw(m_window);
 }
 
 void Game::updateTimers()
@@ -99,31 +94,31 @@ void Game::updateTimers()
 void Game::changeState(GameStateName newState)
 {
     
-    const auto sizeX = m_window->getSize().x;
-    const auto sizeY = m_window->getSize().y;
+    const auto sizeX = m_window.getSize().x;
+    const auto sizeY = m_window.getSize().y;
     
     switch (newState)
     {
         case GameStateName::MAINMENU:
-            m_window->setMouseCursorVisible(true);
+            m_window.setMouseCursorVisible(true);
             m_currentState.reset(new MainMenuState(sizeX, sizeY));
             break;
         case GameStateName::PLAY:
-            m_window->setMouseCursorVisible(false);
+            m_window.setMouseCursorVisible(false);
             m_currentState.reset(new PlayState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::RESTART:
-            m_window->setMouseCursorVisible(false);
+            m_window.setMouseCursorVisible(false);
             resetLevel();
             m_currentState.reset(new PlayState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::LEVEL_EDITOR:
-            m_window->setMouseCursorVisible(true);
+            m_window.setMouseCursorVisible(true);
             m_currentState.reset(new LevelEditorState(sizeX, sizeY, m_player, m_levelReader));
             break;
         case GameStateName::SWITCH_FULLSCREEN:
             switchFullscreen();
-            m_currentState.reset(new MainMenuState(m_window->getSize().x, m_window->getSize().y));
+            m_currentState.reset(new MainMenuState(m_window.getSize().x, m_window.getSize().y));
             break;
         case GameStateName::QUIT:
             m_running = false;
@@ -151,17 +146,16 @@ void Game::resetLevel()
 
 void Game::switchFullscreen()
 {
-    if (!m_fullscreen)
+    m_window.close();
+    if (m_fullscreen)
     {
-        m_window->close();
-        m_window->create(sf::VideoMode::getDesktopMode(), g_gameTitle, sf::Style::Fullscreen);
-        m_fullscreen = true;
+        m_window.create(sf::VideoMode(g_defaultWidth, g_defaultHeight), g_gameTitle, sf::Style::Close);
     }
     else
     {
-        m_window->close();
-        m_window->create(sf::VideoMode(1024, 768), g_gameTitle, sf::Style::Close);
-        m_fullscreen = false;
+        m_window.create(sf::VideoMode::getDesktopMode(), g_gameTitle, sf::Style::Fullscreen);
     }
-    m_window->setFramerateLimit(500);
+    m_fullscreen = !m_fullscreen;
+    m_window.setFramerateLimit(500);
+    
 }

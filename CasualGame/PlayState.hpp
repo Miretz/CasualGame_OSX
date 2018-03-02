@@ -14,7 +14,7 @@
 #include "GLRaycaster.hpp"
 #include "PlayerInputManager.hpp"
 
-class Player;
+struct Player;
 class LevelReaderWriter;
 
 class PlayState : public GameState

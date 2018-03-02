@@ -13,7 +13,7 @@
 #include "GameState.hpp"
 
 class Game;
-class Player;
+struct Player;
 class LevelReaderWriter;
 class LevelEditorGui;
 

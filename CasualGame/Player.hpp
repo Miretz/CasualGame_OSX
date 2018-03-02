@@ -7,9 +7,8 @@
 //
 
 #pragma once
-class Player
+struct Player
 {
-public:
     double m_posX = 22.0;
     double m_posY = 11.5;
     double m_dirX = -1.0;

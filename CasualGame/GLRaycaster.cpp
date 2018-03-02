@@ -17,6 +17,7 @@
 
 #include <cmath>
 
+
 GLRaycaster::GLRaycaster()
 {
 }
@@ -89,7 +90,7 @@ void GLRaycaster::calculateWalls()
     auto& tex8 = m_levelReader->getTexture(8);//floor
     auto& tex9 = m_levelReader->getTexture(9);//ceiling
     
-    for (int x = 0; x < m_windowWidth; x++)
+    for (int x = 0; x < m_windowWidth; ++x)
     {
         
         //which box of the map we're in
