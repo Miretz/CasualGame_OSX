@@ -65,7 +65,7 @@ private:
     
     void calculateWalls();
     void calculateSprites();
-    void setPixel(int x, int y, const sf::Uint32 colorRgba, int style);
+    void setPixel(int x, int y, const sf::Uint32 colorRgba, int style, int pixelSize);
     
 };
 

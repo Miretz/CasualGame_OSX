@@ -90,3 +90,5 @@ static const int g_playhDrawHighlighted = 2;
 static const double g_gunShotTime = 0.15; //seconds
 static const double g_gunShotDelayTime = 0.5; //seconds
 
+static const int g_wallPixelSize = 8;
+

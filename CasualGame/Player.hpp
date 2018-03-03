@@ -9,11 +9,14 @@
 #pragma once
 struct Player
 {
-    double m_posX = 22.0;
-    double m_posY = 11.5;
-    double m_dirX = -1.0;
-    double m_dirY = 0.0;
-    double m_planeX = 0.0;
-    double m_planeY = 0.66;
-    int m_health = 100;
+    double x = 22.0;
+    double y = 11.5;
+    
+    double dirX = -1.0;
+    double dirY = 0.0;
+    
+    double planeX = 0.0;
+    double planeY = 0.66;
+    
+    int health = 100;
 };

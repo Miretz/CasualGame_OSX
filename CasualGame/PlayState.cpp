@@ -85,14 +85,14 @@ void PlayState::update(const float ft)
     }
     
     //update health each frame
-    m_playerHealthDisplay.setString("+ " + std::to_string(m_player->m_health));
+    m_playerHealthDisplay.setString("+ " + std::to_string(m_player->health));
     
     //update player movement
     m_inputManager->updatePlayerMovement(fts, m_player, m_levelReader->getLevel());
     
     //update player position on minimap
-    float angle = std::atan2f(float(m_player->m_dirX), float(m_player->m_dirY));
-    m_minimapPlayer.setPosition(float(m_player->m_posY) * g_playMinimapScale, float(m_player->m_posX) * g_playMinimapScale);
+    float angle = std::atan2f(float(m_player->dirX), float(m_player->dirY));
+    m_minimapPlayer.setPosition(float(m_player->y) * g_playMinimapScale, float(m_player->x) * g_playMinimapScale);
     m_minimapPlayer.setRotation((angle * 57.2957795f) + 90);
     
     
@@ -308,8 +308,8 @@ void PlayState::moveAimedAtSprite(const double fts)
                 auto x = sprites[clickables[i].getSpriteIndex()].x;
                 auto y = sprites[clickables[i].getSpriteIndex()].y;
                 
-                x -= fts * 2.0 * m_player->m_dirX;
-                y -= fts * 2.0 * m_player->m_dirY;
+                x -= fts * 2.0 * m_player->dirX;
+                y -= fts * 2.0 * m_player->dirY;
                 
                 m_levelReader->moveSprite(clickables[i].getSpriteIndex(), x, y);
             }
